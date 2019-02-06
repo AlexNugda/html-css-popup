@@ -13,8 +13,11 @@ body{
 	padding: 20px;
 }
 
-ul.google-menu-list-main{
-    position: relative;
+.google-menu-container a{
+    color: #212121;
+}
+
+ul.google-menu-list-main, ul.google-menu-list{
 	list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -23,18 +26,134 @@ ul.google-menu-list-main{
     padding: 0;
 }
 
-ul.google-menu-list-main ul{
-	list-style: none;
+ul.google-menu-list-main{
+    position: relative;
+}
+
+.google-menu-list{
+    margin: 20px;
+}
+
+a.g-link{
+    text-decoration: none;
+}
+
+ul.google-menu-list-main li.g-menu-item-main{
+	margin-left: 20px;
+}
+
+ul.google-menu-list-main li.expand{
+	min-width: 20px;
+	min-height: 20px;
+	background: url(sprite.png) -40px -7px;
+}
+
+input[type=checkbox].toggle-menu:checked ~ .toggle-menu-expand {
+    display: block;
+    visibility: visible;
+}
+
+.flex-scroll-wrap{
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: flex-start;
-    padding: 0;
+    flex-direction: column-reverse;
 }
 
 .google-menu-item{
     width: 33.3%;
     display: block;
+}
+
+.drop-down{
+    display: none;
+}
+
+.toggle-menu-label, .show-more-label{
+    display: block;
+    cursor: pointer;
+}
+
+.toggle-menu-label{	
+	width: 20px;
+    height: 20px; 
+}
+
+.show-more-label{
+    text-align: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+input[type=checkbox].toggle-menu, input[type=checkbox].more-apps{
+	width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    -webkit-appearance: none;
+    pointer-events: none;
+}
+
+.toggle-menu-expand{
+	position: absolute;
+	right: 0;
+	top: 50px;
+	width: 300px;
+	max-height: 500px;
+    overflow-y: overlay;
+    box-sizing: border-box;
+	border: 1px solid  rgba(0,0,0,.2);
+    border-radius: 2px;
+    visibility: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+}
+
+input[type=checkbox].toggle-menu:checked ~ .triangle-pointer::before, input[type=checkbox].toggle-menu:checked ~ .triangle-pointer::after{
+    content: '';
+    position: absolute;
+    top: 35px;
+    right: 100px;
+    border: 8px solid transparent;
+}
+
+input[type=checkbox].toggle-menu:checked ~ .triangle-pointer::before{
+    border-bottom: 8px solid #cccccc;
+}
+
+input[type=checkbox].toggle-menu:checked ~ .triangle-pointer::after{
+    border-bottom: 8px solid #fff;
+    top: 36px;
+}
+
+.bell{
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: url(sprite.png) no-repeat #737373;
+	background-position: -4px -5px;
+}
+
+.account{
+	width: 32px;
+	height: 32px;
+	background-color: #8e00a2;
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	position: relative;
+}
+
+.account::after{
+	content: "A";
+	display: inline-block;
+	position: absolute;
+	vertical-align: middle;
+	text-align: center;
+	top: 8px;
+	left: 12px;
 }
 
 a.apps-link{
@@ -56,12 +175,15 @@ a.apps-link:focus{
     border: 1px solid lightblue;
 }
 
+a.apps-link .app-title::first-letter{
+    text-transform: uppercase;
+}
+
 a.apps-link::before{
     content: "";
     display: block;
     width: 60px;
     height: 60px;
-    //border: 1px solid #000000;
     margin: auto;
 }
 
@@ -105,113 +227,8 @@ a.app-blogger::before{
     background: url(sprite.png) -1px -538px;
 }
 
-a.apps-link .app-title::first-letter{
-    text-transform: uppercase;
-}
-
-ul.google-menu-list-main li.g-menu-item-main{
-	margin-left: 20px;
-}
-
-ul.google-menu-list-main li.expand{
-	min-width: 20px;
-	min-height: 20px;
-	background: url(sprite.png) -40px -7px;
-}
-
-input[type=checkbox].toggle-menu:checked ~ .toggle-menu-expand {
-    display: block;
-    visibility: visible;
-}
-
-.flex-scroll-wrap{
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.toggle-menu-label{
-	display: block;
-	width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.show-more-label{
-    display: block;
-    text-align: center;
-    padding: 10px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-}
-
-input[type=checkbox].toggle-menu, input[type=checkbox].more-apps{
-	width: 1px;
-    height: 1px;
-    overflow: hidden;
-    opacity: 0;
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    -webkit-appearance: none;
-    pointer-events: none;
-}
-
-.toggle-menu-expand{
-	position: absolute;
-	right: 0;
-	top: 50px;
-	width: 300px;
-	max-height: 500px;
-    overflow-y: overlay;
-    box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-color: rgba(0,0,0,.2);
-    border-radius: 2px;
-    visibility: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,.2);
-}
-
-.bell{
-	width: 22px;
-	height: 22px;
-	background-color: #737373;
-	border-radius: 50%;
-	background-image: url(sprite.png);
-	background-repeat: no-repeat;
-	background-position: -4px -5px;
-}
-
-.account{
-	width: 32px;
-	height: 32px;
-	background-color: #8e00a2;
-	border-radius: 50%;
-	color: #fff;
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	position: relative;
-}
-.account::after{
-	content: "A";
-	display: inline-block;
-	position: absolute;
-	vertical-align: middle;
-	text-align: center;
-	top: 8px;
-	left: 12px;
-}
-
 .show-more-label::first-letter{
     text-transform: uppercase;
-}
-
-.google-menu-list{
-    margin: 20px;
-}
-
-.drop-down{
-    display: none;
 }
 
 input[type=checkbox].more-apps:checked ~ .google-menu-list .drop-down{
@@ -220,10 +237,6 @@ input[type=checkbox].more-apps:checked ~ .google-menu-list .drop-down{
 
 input[type=checkbox].more-apps:checked ~ label.show-more-label{
     display: none;
-}
-
-.scroll-wrap{
-    position: relative;
 }
 
 .another-links{
@@ -236,3 +249,4 @@ input[type=checkbox].more-apps:checked ~ label.show-more-label{
 input[type=checkbox].more-apps:checked ~ .another-links{
     display: block;
 }
+
